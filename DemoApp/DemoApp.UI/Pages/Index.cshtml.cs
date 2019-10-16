@@ -1,7 +1,9 @@
 ﻿using DemoApp.Core.Configuration;
 using DemoApp.Core.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
 
 namespace DemoApp.UI.Pages
 {
@@ -23,6 +25,11 @@ namespace DemoApp.UI.Pages
             ValueFromSettingsDirectly = _settings.AzureAccount;
 
             ValueFromCallingAzureService = _azureService.GetAValueFromSettings();
+        }
+
+        public async Task<IActionResult> OnPostGoToPrivacyPage()
+        {
+            return RedirectToPage("/Privacy");
         }
     }
 }

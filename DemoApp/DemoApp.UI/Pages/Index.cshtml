@@ -4,10 +4,43 @@
     ViewData["Title"] = "Home page";
 }
 
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-        <h3>Value from Options: @Model.ValueFromSettingsDirectly</h3>
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h3>Value from Options: @Model.ValueFromSettingsDirectly</h3>
 
-        <h3>Value from calling AzureService: @Model.ValueFromCallingAzureService</h3>
+    <h3>Value from calling AzureService: @Model.ValueFromCallingAzureService</h3>
+</div>
+
+
+<div class="ml-auto">
+    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmModal">Click me to prove you're not a bot!</button>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-page-handler="GoToPrivacyPage">
+                <div class="modal-body">
+                    @{
+                        var val1 = 10;
+                        var val2 = 20;
+                        var answer = 30;
+                        <span id="question-placeholder">What is @val1 + @val2?</span>
+                        <input type="text" id="ans" />
+                        <input type="hidden" id="realAnswer" value="@answer" />
+                    }
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" onclick="return check()" id="submitButton" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
+
+@section scripts{
+    <script src="~/js/modal.js" asp-append-version="true"></script>
+}
